@@ -1,0 +1,64 @@
+﻿@if (Movie != null)
+{
+    <hr/>
+    <div class="d-inline-flex">
+        @if (!string.IsNullOrEmpty(_movieImdb?.Poster))
+        {
+            <img class="image" src="@_movieImdb.Poster" 
+                 width="200px" height="250px" 
+                 href="/movie/@Movie.Id"
+                 alt="Постер фильма @Movie.OriginalTitle не найден"/>
+        }
+        else
+        {
+            <img class="image" src="https://i.pinimg.com/736x/c7/37/6d/c7376d0de1420654436839a498f90b07.jpg" 
+                 width="200px" height="250px" 
+                 href="/movie/@Movie.Id"
+                 alt="Не удалось установить связь с Imdb"/>
+        }
+        <div class="m-lg-2 row">
+            <a href="/movie/@Movie.Id" class="text-decoration-none">
+                <h2>@Movie.OriginalTitle</h2>
+            </a>
+            @if (Movie.Tags != null)
+            {
+                <div class="d-inline-flex">
+                    <p>Теги: </p>
+                    @foreach (var item in Movie.Tags.Take(7))
+                    {
+                        <a href="tag/@item.Id" class="mx-1 text-decoration-none">@item.Name</a>
+                    }
+                </div>
+            }
+            @if (Movie.Persons != null)
+            {
+                <div class="d-inline-flex">
+                    <p>Актёры/Режиссёры: </p>
+                    @foreach (var item in Movie.Persons.Take(7))
+                    {
+                        <a href="person/@item.Id" class="mx-1 text-decoration-none">@item.Name</a>
+                    }
+                </div>
+            }
+        </div>
+        <div>
+            <h4>@Movie.Rating</h4>
+        </div>
+    </div>
+}
+
+@code {
+
+    [Parameter]
+    public Movie? Movie { get; set; }
+
+    private MovieImdb? _movieImdb;
+    readonly DataExtractor _extractor = new();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Movie != null)
+            _movieImdb = await _extractor.GetImdbMovieByIdImdbAsync(Movie.IdImdb);
+    }
+
+}

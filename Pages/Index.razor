@@ -1,0 +1,78 @@
+﻿@page "/"
+
+<PageTitle>Search Movies, Tags, Actors and Directors</PageTitle>
+
+<div class="input-group">
+    <input class="form-control" type="text" placeholder="Находите фильмы, тэги, актеров и режиссеров"
+           @bind="@_inputText">
+    <span class="input-group-btn">
+        <button class="btn btn-outline-success ms-lg-4" @onclick="OnSearchClick">Поиск</button>
+    </span>
+</div>
+@if (_movies != null)
+{
+    <div class="d-grid">
+        <hr/>
+        <h4>Найденные Фильмы</h4>
+        @foreach (var item in _movies)
+        {
+            <p>
+                <a class="m-1" href="/movie/@item.Id">@item.OriginalTitle</a>
+            </p>
+        }
+    </div>
+}
+@if (_tags != null)
+{
+    <div class="d-grid">
+        <hr/>
+        <h4>Найденные Теги</h4>
+        @foreach (var item in _tags)
+        {
+            <a class="m-1" href="/tag/@item.Id">@item.Name</a>
+        }
+    </div>
+}
+@if (_persons != null)
+{
+    <div class="d-grid">
+        <hr/>
+        <h4>Найденные Актёры/Режиссёры</h4>
+        @foreach (var item in _persons)
+        {
+            <a class="m-1" href="/person/@item.Id">@item.Name</a>
+        }
+    </div>
+}
+
+@code {
+
+    private string? _inputText;
+    private string? _name;
+    private List<Movie>? _movies;
+    private List<Person>? _persons;
+    private List<Tag>? _tags;
+
+    readonly DataExtractor _extractor = new();
+
+    private void OnSearchClick()
+    {
+        if (string.IsNullOrEmpty(_inputText))
+        {
+            return;
+        }
+        string[] strings = _inputText.Split("@");
+        if (strings.Length == 1)
+            _movies = _extractor.GetMoviesByText(strings[0]);
+        else
+        {
+            if ("movie".Contains(strings[1].ToLower()))
+                _movies = _extractor.GetMoviesByText(strings[0]);
+            if ("tag".Contains(strings[1].ToLower()))
+                _tags = _extractor.GetTagsByText(strings[0]);
+            if ("person".Contains(strings[1].ToLower()))
+                _persons = _extractor.GetPersonsByText(strings[0]);
+        }
+    }
+
+}

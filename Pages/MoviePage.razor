@@ -1,0 +1,103 @@
+﻿@page "/movie/{movieId:int}"
+@inject DataExtractor Extractor
+<h3>MoviePage</h3>
+
+@if (_movie != null)
+{
+    <PageTitle>@_movie.OriginalTitle</PageTitle>
+    <div class="d-inline-flex">
+        @if (_movieImdb != null)
+        {
+            <img src="@_movieImdb.Poster"
+                 width="400px" height="500px"
+                 alt="Постер фильма @_movie.OriginalTitle не найден"/>
+        }
+        else
+        {
+            <img src="https://i.pinimg.com/736x/c7/37/6d/c7376d0de1420654436839a498f90b07.jpg"
+                 width="400px" height="500px"
+                 alt="Не удалось установить связь с Imdb"/>
+        }
+        <div class="row mx-3">
+            <h3>@_movie.OriginalTitle</h3>
+            <div class="d-inline-flex">
+                <p>Теги: </p>
+                @if (_movie.Tags != null)
+                {
+                    foreach (var item in _movie.Tags.Take(5))
+                    {
+                        <a href="tag/@item.Id" class="mx-1 text-decoration-none">@item.Name</a>
+                    }
+                }
+            </div>
+            <div class="d-inline-flex">
+                <p>Актёры/Режиссёры: </p>
+                @if (_movie.Persons != null)
+                {
+                    foreach (var item in _movie.Persons.Take(5))
+                    {
+                        <a href="person/@item.Id" class="mx-1 text-decoration-none">@item.Name</a>
+                    }
+                }
+            </div>
+            @if (_movieImdb != null)
+            {
+                <p>
+                    Сюжет: @_movieImdb.Plot
+                </p>
+                <p>
+                    Рейтинг: @_movieImdb.ImdbRating
+                </p>
+            }
+            else
+            {
+                <p>Не удалось установить связь с Imdb и получить сюжет и рейтинг</p>
+            }
+            @if (_movie.Top != null)
+            {
+                <p>Рекомендуемые Фильмы: </p>
+                int index = 1;
+                <div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Фильмы</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var movie in _movie.Top.OrderByDescending(m => m.Rating))
+                        {
+                            <tr>
+                                <th scope="row">@index</th>
+                                <td><MovieItem Movie="movie"></MovieItem></td>
+                            </tr>
+                            
+                            index++;
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@code {
+
+    [Parameter]
+    public int MovieId { get; set; }
+
+    private Movie? _movie;
+
+    private MovieImdb? _movieImdb;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _movie = Extractor.GetMovieById(MovieId);
+
+        if (_movie != null)
+            _movieImdb = await Extractor.GetImdbMovieByIdImdbAsync(_movie.IdImdb);
+    }
+
+}

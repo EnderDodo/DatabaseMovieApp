@@ -1,0 +1,55 @@
+﻿@page "/tag/{tagId:int}"
+@inject DataExtractor Extractor
+<h3>TagPage</h3>
+
+@if (_tag != null)
+{
+    <PageTitle>@_tag.Name</PageTitle>
+    <div class="row mx-3">
+        <h3>@_tag.Name</h3>
+        @if (_movies != null)
+        {
+            int index = 1;
+            <div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Фильмы</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var movie in _movies.OrderByDescending(m => m.Rating))
+                    {
+                        <tr>
+                            <th scope="row">@index</th>
+                            <td>
+                                <MovieItem Movie="movie"></MovieItem>
+                            </td>
+                        </tr>
+
+                        index++;
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+}
+
+@code {
+
+    [Parameter]
+    public int TagId { get; set; }
+
+    private Tag? _tag;
+    private List<Movie>? _movies;
+
+    protected override void OnParametersSet()
+    {
+        _tag = Extractor.GetTagById(TagId);
+        if (_tag != null)
+            _movies = Extractor.GetMoviesByTagName(_tag.Name);
+    }
+
+}

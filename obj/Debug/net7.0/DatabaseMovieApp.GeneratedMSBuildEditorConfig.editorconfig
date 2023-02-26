@@ -1,0 +1,65 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = DatabaseMovieApp
+build_property.RootNamespace = DatabaseMovieApp
+build_property.ProjectDir = C:\Users\Denis\RiderProjects\DatabaseMovieApp\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Denis\RiderProjects\DatabaseMovieApp
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/Denis/RiderProjects/DatabaseMovieApp/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Denis/RiderProjects/DatabaseMovieApp/Pages/FetchData.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Denis/RiderProjects/DatabaseMovieApp/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Denis/RiderProjects/DatabaseMovieApp/Pages/MoviePage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTW92aWVQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Denis/RiderProjects/DatabaseMovieApp/Pages/PersonPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGVyc29uUGFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Denis/RiderProjects/DatabaseMovieApp/Pages/TagPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFnUGFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Denis/RiderProjects/DatabaseMovieApp/Shared/MovieItem.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1vdmllSXRlbS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Denis/RiderProjects/DatabaseMovieApp/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Denis/RiderProjects/DatabaseMovieApp/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-g9y04u3089
+
+[C:/Users/Denis/RiderProjects/DatabaseMovieApp/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-4gt1koe4jc
+
+[C:/Users/Denis/RiderProjects/DatabaseMovieApp/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Denis/RiderProjects/DatabaseMovieApp/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
