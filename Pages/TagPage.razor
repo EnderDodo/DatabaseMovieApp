@@ -1,11 +1,10 @@
 ﻿@page "/tag/{tagId:int}"
 @inject DataExtractor Extractor
-<h3>TagPage</h3>
 
 @if (_tag != null)
 {
     <PageTitle>@_tag.Name</PageTitle>
-    <div class="row mx-3">
+    <div class="row m-3">
         <h3>@_tag.Name</h3>
         @if (_movies != null)
         {

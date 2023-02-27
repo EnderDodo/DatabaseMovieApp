@@ -22,15 +22,22 @@ public class DataExtractor
         return _context.Movies
             .Where(item =>
                 item.Titles != null && item.Titles.Any(title => title.Name.ToLower().Contains(text.ToLower())))
+            .OrderByDescending(item => item.Rating)
             .ToList();
     }
     public List<Tag> GetTagsByText(string text)
     {
-        return _context.Tags.Where(item => item.Name.Contains(text)).ToList();
+        return _context.Tags
+            .Where(item => item.Name.Contains(text))
+            .OrderByDescending(item => item.Movies.Count)
+            .ToList();
     }
     public List<Person> GetPersonsByText(string text)
     {
-        return _context.Persons.Where(item => item.Name.Contains(text)).ToList();
+        return _context.Persons
+            .Where(item => item.Name.Contains(text))
+            .OrderByDescending(item => item.Movies.Count)
+            .ToList();
     }
     #endregion
     
@@ -65,17 +72,18 @@ public class DataExtractor
     {
         return _context.Movies
             .Where(m => m.Tags.Any(t => t.Name == tagName))
-            .Include(m => m.Persons)
             .Include(m => m.Tags)
+            .Include(m => m.Persons)
             .AsNoTracking()
             .ToList();
     }
     public List<Movie?> GetMoviesByPersonName(string name)
     {
         return _context.Movies
-            .Include(item => item.Persons)
             .Where(item => item.Persons.Any(person => person.Name == name))
             .Include(item => item.Tags)
+            .Include(item => item.Persons)
+            .AsNoTracking()
             .ToList();
     }
 

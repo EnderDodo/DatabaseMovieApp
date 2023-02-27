@@ -4,15 +4,15 @@
     <div class="d-inline-flex">
         @if (!string.IsNullOrEmpty(_movieImdb?.Poster))
         {
-            <img class="image" src="@_movieImdb.Poster" 
-                 width="200px" height="250px" 
+            <img class="image" src="@_movieImdb.Poster"
+                 width="200px" height="250px"
                  href="/movie/@Movie.Id"
                  alt="Постер фильма @Movie.OriginalTitle не найден"/>
         }
         else
         {
-            <img class="image" src="https://i.pinimg.com/736x/c7/37/6d/c7376d0de1420654436839a498f90b07.jpg" 
-                 width="200px" height="250px" 
+            <img class="image" src="https://i.pinimg.com/736x/c7/37/6d/c7376d0de1420654436839a498f90b07.jpg"
+                 width="200px" height="250px"
                  href="/movie/@Movie.Id"
                  alt="Не удалось установить связь с Imdb"/>
         }
@@ -40,10 +40,11 @@
                     }
                 </div>
             }
+            <div>
+                <p>Рейтинг: @Movie.Rating</p>
+            </div>
         </div>
-        <div>
-            <h4>@Movie.Rating</h4>
-        </div>
+
     </div>
 }
 

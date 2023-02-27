@@ -1,55 +1,55 @@
 ﻿@page "/person/{personId:int}"
 @inject DataExtractor Extractor
-<h3>PersonPage</h3>
 
 @if (_person != null)
 {
     <PageTitle>@_person.Name</PageTitle>
-    <div class="d-inline-flex">
-        @if (!string.IsNullOrEmpty(_imageLink))
-        {
-            <img src="@_imageLink"
-                 width="400px" height="400px"
-                 alt="@_person.Name, фото не найдено"/>
-        }
-        @if (string.IsNullOrEmpty(_imageLink))
-        {
-            <img src="https://i.pinimg.com/736x/70/aa/ba/70aaba8a839d4b8e1821d15ebaf82501.jpg"
-                 width="400px" height="400px"
-                 alt="@_person.Name, ссылка на фото не найдена"/>
-        }
-        <div class="row mx-3">
-            <h3>@_person.Name</h3>
-            <p>Связанные Фильмы: </p>
-            @if (_movies != null)
+    <div class="d-grid">
+        <div class="d-inline-flex">
+            @if (!string.IsNullOrEmpty(_imageLink))
             {
-                int index = 1;
-                <div>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Фильмы</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach (var movie in _movies.OrderByDescending(m => m.Rating))
-                        {
-                            <tr>
-                                <th scope="row">@index</th>
-                                <td>
-                                    <MovieItem Movie="movie"></MovieItem>
-                                </td>
-                            </tr>
-
-                            index++;
-                        }
-                        </tbody>
-                    </table>
-                </div>
+                <img src="@_imageLink"
+                     width="400px" height="400px"
+                     alt="@_person.Name, фото не найдено"/>
             }
-
+            @if (string.IsNullOrEmpty(_imageLink))
+            {
+                <img src="https://i.pinimg.com/736x/70/aa/ba/70aaba8a839d4b8e1821d15ebaf82501.jpg"
+                     width="400px" height="400px"
+                     alt="@_person.Name, ссылка на фото не найдена"/>
+            }
+            <div class="row m-3">
+                <h3>@_person.Name</h3>
+            </div>
         </div>
+        <h3>Связанные Фильмы: </h3>
+        @if (_movies != null)
+        {
+            int index = 1;
+            <div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Фильмы</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var movie in _movies.OrderByDescending(m => m.Rating))
+                    {
+                        <tr>
+                            <th scope="row">@index</th>
+                            <td>
+                                <MovieItem Movie="movie"></MovieItem>
+                            </td>
+                        </tr>
+
+                        index++;
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
     </div>
 }
 
