@@ -33,7 +33,7 @@ public class DatabaseContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<Movie>()
-            .HasMany(m => m.Top)
+            .HasMany(item => item.Top)
             .WithMany();
     }
 }

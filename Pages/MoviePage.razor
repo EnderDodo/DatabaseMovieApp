@@ -24,9 +24,9 @@
                     <p>Теги: </p>
                     @if (_movie.Tags != null)
                     {
-                        foreach (var item in _movie.Tags.Take(5))
+                        foreach (var item in _movie.Tags.Take(7))
                         {
-                            <a href="tag/@item.Id" class="mx-1 text-decoration-none">@item.Name</a>
+                            <a href="tag/@item.Id" class="mx-2 text-decoration-none">@item.Name</a>
                         }
                     }
                 </div>
@@ -34,9 +34,9 @@
                     <p>Актёры/Режиссёры: </p>
                     @if (_movie.Persons != null)
                     {
-                        foreach (var item in _movie.Persons.Take(5))
+                        foreach (var item in _movie.Persons.Take(7))
                         {
-                            <a href="person/@item.Id" class="mx-1 text-decoration-none">@item.Name</a>
+                            <a href="person/@item.Id" class="mx-2 text-decoration-none">@item.Name</a>
                         }
                     }
                 </div>
@@ -55,38 +55,37 @@
                 }
             </div>
         </div>
-        <div class="d-inline-flex">
-            <div class="row m-3">
-                @if (_movie.Top != null)
-                {
-                    <h3>Рекомендуемые Фильмы: </h3>
-                    int index = 1;
-                    <div>
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Фильмы</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach (var movie in _movie.Top.OrderByDescending(m => m.Rating))
-                            {
-                                <tr>
-                                    <th scope="row">@index</th>
-                                    <td>
-                                        <MovieItem Movie="movie"></MovieItem>
-                                    </td>
-                                </tr>
 
-                                index++;
-                            }
-                            </tbody>
-                        </table>
-                    </div>
-                }
+        @if (_movie.Top != null)
+        {
+            <div class="mt-4">
+                <h3>Рекомендуемые Фильмы: </h3>
             </div>
-        </div>
+            int index = 1;
+            <div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Фильмы</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var movie in _movie.Top.OrderByDescending(m => m.Rating))
+                    {
+                        <tr>
+                            <th scope="row">@index</th>
+                            <td>
+                                <MovieItem Movie="movie"></MovieItem>
+                            </td>
+                        </tr>
+
+                        index++;
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
     </div>
 }
 
@@ -108,3 +107,4 @@
     }
 
 }
+

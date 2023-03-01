@@ -26,7 +26,7 @@
                     <p>Теги: </p>
                     @foreach (var item in Movie.Tags.Take(7))
                     {
-                        <a href="tag/@item.Id" class="mx-1 text-decoration-none">@item.Name</a>
+                        <a href="tag/@item.Id" class="mx-2 text-decoration-none">@item.Name</a>
                     }
                 </div>
             }
@@ -36,7 +36,7 @@
                     <p>Актёры/Режиссёры: </p>
                     @foreach (var item in Movie.Persons.Take(7))
                     {
-                        <a href="person/@item.Id" class="mx-1 text-decoration-none">@item.Name</a>
+                        <a href="person/@item.Id" class="mx-2 text-decoration-none">@item.Name</a>
                     }
                 </div>
             }
